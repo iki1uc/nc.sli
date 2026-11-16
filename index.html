@@ -1,0 +1,22 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
+<title>Nc System4 Lvl Gwind — index.html — FINALE</title>
+<style>body{background:#000;color:#0f0;font-family:monospace;padding:20px;text-align:center}h1{color:#ffd400}a{color:#ffd400}.card{background:#0d1a0d;border:1px solid #222;border-radius:14px;max-width:780px;margin:16px auto;padding:18px;text-align:left}button{background:#0a0f0a;color:#00ff41;border:1px solid #1e3a1e;padding:10px 14px;border-radius:10px;cursor:pointer;margin:4px}input{background:#050805;color:#0f0;border:1px solid #333;padding:8px;border-radius:8px;margin:4px}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #222;padding:6px;text-align:left}.nav{margin:10px}</style>
+<h1>Nc System4 Lvl Gwind — index.html — FINALE</h1><div>X4 → X8 → X16 · 3-9-81 · ZaM 729 · Pentagramm bestOfAll</div><div class=nav><a href='index.html'>index.html = Nc System4 Lvl Gwind ★</a> | <a href='vol.2.html'>vol.2.html = Vol 1</a> | <a href='vol.3.html'>vol.3.html = Vol 2</a></div><div class=card><h2>⭐ index.html — Nc System4 Lvl Gwind — FINALE</h2><p>Das ist der Letzte. Hier läuft alles zusammen: ZaM 729 + Pentagramm bestOfAll.</p></div>
+<div class=card><h2>ZaM — KLICK UND ZACK — 729</h2><div style='font-size:64px;text-align:center' id=n>729</div><div style='text-align:center'>TIEFE <span id=n2>729</span> — ALLES · 9 x 81</div><div style='text-align:center'><button onclick='klick()'>👆 KLICK — ZACK — ZaM</button><button onclick='zurueck()'>↩ ZURÜCK</button><button onclick='reset729()'>⟳ RESET 729</button></div></div>
+<div class=card><h2>◆ Pentagramm — bestOfAll — MIT EINGEFLOSSEN &lt;YA</h2><p>Regeln: 1. HIGHEST_SCORE &nbsp; 2. PRISMATIKUM_TIEBREAK &nbsp; 3. MIRROR_DISTANCE (Mitte 41) &nbsp; 4. ALPHABETIC &nbsp; 5. IDENTICAL / ONLY_CANDIDATE / NO_CANDIDATES</p>
+<div><input id=nm placeholder='Name z.B. PRISMATIKUM'><input id=sc type=number placeholder='Score z.B. 89'><input id=mr type=number placeholder='Mirror z.B. 41'><button onclick='addK()'>+ Kandidat</button><button onclick='runBest()'>★ BEST OF ALL</button><button onclick='demo()'>Demo-Tests laden</button></div>
+<div id=liste style='margin-top:10px'></div><div id=erg style='margin-top:10px;color:#ffd400;font-weight:bold'></div>
+<table id=rangt></table></div>
+<div class=card><h2>Vol-Ordnung</h2><p><b>Vol 1 = vol.2.html</b> — alter Stand / Sicherung<br><b>Vol 2 = vol.3.html</b> — der hier / Zwischenstand<br><b>Letzter = index.html</b> — Nc System4 Lvl Gwind — FINALE</p><p>Alle 3 haben pentagramm.js drinnen. Kein CDN nötig.</p></div>
+<script src='pentagramm.js'></script>
+<script>
+let v=729; let kandidaten=[];
+function klick(){ if(v>1){ v=Math.floor(v/3); if(v===243)v=81; else if(v===27)v=9; else if(v===3)v=1; } document.getElementById('n').textContent=v; document.getElementById('n2').textContent=v; }
+function zurueck(){ v=729; document.getElementById('n').textContent=v; document.getElementById('n2').textContent=v; }
+function reset729(){ zurueck(); }
+function render(){ document.getElementById('liste').innerHTML = kandidaten.map((k,i)=> (i+1)+'. '+k.name+' — Score '+k.score+' — Mirror '+(k.mirror??'—') ).join('<br>') || 'Noch keine Kandidaten.'; }
+function addK(){ const name=document.getElementById('nm').value||'PRISMATIKUM'; const score=Number(document.getElementById('sc').value||89); const mr=document.getElementById('mr').value; const k={name,score}; if(mr!=='') k.mirror=Number(mr); kandidaten.push(k); render(); }
+function runBest(){ const r=bestOfAll(kandidaten); document.getElementById('erg').textContent = r.beste ? '★ BESTE: '+r.beste.name+' — GRUND: '+r.grund+' — Verworfen: '+r.verworfen : 'KEINE KANDIDATEN — GRUND: '+r.grund; document.getElementById('rangt').innerHTML = '<tr><th>Rang</th><th>Name</th><th>Score</th><th>Mirror</th></tr>' + (r.rang||[]).map((k,i)=>'<tr><td>'+(i+1)+'</td><td>'+k.name+'</td><td>'+k.score+'</td><td>'+(k.mirror??'—')+'</td></tr>').join(''); }
+function demo(){ kandidaten=[{name:'PRISMATIKUM',score:89,mirror:41},{name:'ETMA',score:89,mirror:55},{name:'ALPHA',score:89,mirror:40}]; render(); runBest(); }
+render();
+</script>
